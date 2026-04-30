@@ -2,7 +2,7 @@
 // This is your backend communication code - leave it as is
 function loadProfile() {
     document.getElementById('name').innerHTML = "Jakob<br>Lewis";
-    document.getElementById('bio').innerText = "AI Development and Full stack oriented software engineering student with a 4.0 GPA. Contact me at Jakoblewis3000@gmail.com. Thank you! ";
+    document.getElementById('bio').innerText = "AI Development and Full stack oriented software engineering student with a 4.0 GPA. Contact me at Jakoblewis3000@gmail.com or JakobLewis@students.maestrocollege.edu Thank you! ";
     
     const skills = ['Python', 'JavaScript', 'Full-Stack'];
     const skillsList = document.getElementById('skills');
