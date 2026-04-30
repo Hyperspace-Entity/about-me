@@ -1,0 +1,60 @@
+body {
+    /* Trendy Light Coral to Periwinkle Sky */
+    background: linear-gradient(-45deg, #ffeded, #f4f7ff, #e3f2fd, #fff0f3);
+    background-size: 100% 100%;
+    animation: shiftGradient 5s ease infinite;
+    min-height: 100vh;
+    min-width: 100vw;
+    margin: 0;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* The "Shifting" Name Animation you have working */
+#name {
+    background: linear-gradient(270deg, #72d5d5, #3b82f6, #72d5d5);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shiftGradient 5s ease infinite;
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    display: inline-block;
+}
+
+/* Animation Keyframes */
+@keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(-10%, 10%) scale(1.1); }
+}
+
+@keyframes shiftGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism for the card */
+.card {
+    border: none;
+    border-radius: 30px;
+    padding: 3rem;
+    max-width: 400px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.85); /* Slight transparency */
+    backdrop-filter: blur(15px); /* Blurs the blobs behind the card */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    z-index: 10;
+}
