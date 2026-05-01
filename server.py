@@ -8,7 +8,7 @@ PORT = int(os.environ.get("PORT", 8000))
 PROFILE_DATA = {
     "name": "Jakob Lewis",
     "location": "Shreveport, LA",
-    "bio": "AI Development and Full Stack oriented software engineering student at Maestro AI University with a 4.0 GPA.",
+    "bio": "AI Development and Full Stack oriented software engineering student with a 4.0 GPA.",
     "skills": ["Python", "JavaScript", "Full-Stack"]
 }
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     # Allow port reuse so restarts don't get "address already in use"
     socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(('', PORT), AboutMeServer) as httpd:
+    with socketserver.TCPServer(('0.0.0.0', PORT), AboutMeServer) as httpd:
         print(f"Serving at http://localhost:{PORT}")
         print(f"API available at http://localhost:{PORT}/api/profile")
         try:
