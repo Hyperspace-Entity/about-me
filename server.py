@@ -3,10 +3,12 @@ import socketserver
 import json
 import os
 
-PORT = int(os.environ.get("PORT", 8000))
+# Configuration
+PORT = 8000
 
 class AboutMeServer(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
+        # API Route for the profile data
         if self.path in ['/api/profile', '/api/profile/']:
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -20,10 +22,13 @@ class AboutMeServer(http.server.SimpleHTTPRequestHandler):
             }
             self.wfile.write(json.dumps(data).encode())
         else:
+            # This serves your HTML, CSS, and JS files
             super().do_GET()
 
+# Boilerplate to run the server
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    with socketserver.TCPServer(("0.0.0.0", PORT), AboutMeServer) as httpd:
-        print(f"Serving at port {PORT}")
+    with socketserver.TCPServer(("", PORT), AboutMeServer) as httpd:
+        print(f"Serving at http://localhost:{PORT}")
         httpd.serve_forever()
+
