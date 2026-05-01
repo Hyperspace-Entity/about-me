@@ -24,7 +24,6 @@ class AboutMeServer(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("0.0.0.0", PORT), AboutMeServer) as httpd:
         print(f"Serving at port {PORT}")
         httpd.serve_forever()
