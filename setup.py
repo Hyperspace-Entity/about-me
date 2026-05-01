@@ -1,12 +1,10 @@
-from setuptools import setup
-from make_sphinx_documentation import BuildDocsCommand
-
-BuildDocsCommand.sourcedir = "docs"
+from setuptools import setup, find_packages
 
 setup(
-    cmdclass={
-        'build_docs': BuildDocsCommand, # Run to build the documentation
-    },
-    
-    include_package_data=True
+name='about-me',
+version='1.0.0',
+description='Jakob Lewis portfolio site',
+py_modules=['server'],
+python_requires='>=3.8',
+include_package_data=True,
 )
