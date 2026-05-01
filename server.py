@@ -5,6 +5,9 @@ import os
 
 PORT = int(os.environ.get("PORT", 8000))
 
+print(f"PORT env variable is: {PORT}")
+print(f"All env vars: { {k: v for k, v in os.environ.items() if 'PORT' in k} }")
+
 PROFILE_DATA = {
     "name": "Jakob Lewis",
     "location": "Shreveport, LA",
@@ -24,11 +27,9 @@ class AboutMeServer(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(body)
         else:
-            # Serve static files (index.html, style.css, script.js, etc.)
             super().do_GET()
 
     def do_OPTIONS(self):
-        # Handle CORS preflight so fetch() works from any origin during dev
         self.send_response(204)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
@@ -36,18 +37,15 @@ class AboutMeServer(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
 
     def log_message(self, format, *args):
-        # Clean up the default log output
         print(f"[{self.address_string()}] {format % args}")
 
 
 if __name__ == '__main__':
-    # Always serve from the directory this file lives in
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    # Allow port reuse so restarts don't get "address already in use"
     socketserver.TCPServer.allow_reuse_address = True
+    print(f"Starting server on 0.0.0.0:{PORT}")
     with socketserver.TCPServer(('0.0.0.0', PORT), AboutMeServer) as httpd:
-        print(f"Serving at http://localhost:{PORT}")
-        print(f"API available at http://localhost:{PORT}/api/profile")
+        print(f"Server running on 0.0.0.0:{PORT}")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
