@@ -3,7 +3,8 @@ import socketserver
 import json
 import os
 
-# Configuration
+# basic port configuration 
+# this was originally hosted on mobile, will update
 PORT = 8000
 
 class AboutMeServer(http.server.SimpleHTTPRequestHandler):
@@ -18,14 +19,15 @@ class AboutMeServer(http.server.SimpleHTTPRequestHandler):
                 "name": "Jakob Lewis",
                 "location": "Shreveport, LA",
                 "bio": "AI and Full stack oriented software engineering student with a 4.0 GPA",
-                "skills": ["Python", "JavaScript", "Full-Stack"]
+                "skills": ["Python", "API Development", "JavaScript", "Full-Stack"]
             }
             self.wfile.write(json.dumps(data).encode())
         else:
             # This serves your HTML, CSS, and JS files
             super().do_GET()
 
-# Boilerplate to run the server
+# main function to run the server locally 
+# will change and remove later, for now want to preserve self-sufficient hosting
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     with socketserver.TCPServer(("", PORT), AboutMeServer) as httpd:
