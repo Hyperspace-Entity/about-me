@@ -30,7 +30,7 @@
         'AI Development and Full Stack oriented software engineering student with a 4.0 GPA.';
       var skillsList = document.getElementById('skills');
       skillsList.innerHTML = '';
-      ['Python', 'JavaScript', 'Full-Stack'].forEach(function(skill) {
+      ['Python', 'JavaScript', 'API Development','Full-Stack'].forEach(function(skill) {
         var li = document.createElement('li');
         li.innerText = skill;
         skillsList.appendChild(li);
