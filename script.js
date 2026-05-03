@@ -1,9 +1,12 @@
+  // script.js 
   function loadProfile() {
   fetch('/api/profile')
     .then(function(res) {
       if (!res.ok) throw new Error('API status ' + res.status);
       return res.json();
     })
+    // if not res.ok throw err 
+// basic information snd skills
     .then(function(data) {
       document.getElementById('name').innerHTML =
         data.name ? data.name.replace(' ', '<br>') : 'Jakob<br>Lewis';
@@ -20,7 +23,7 @@
       if (btn) btn.style.display = 'none';
     })
     .catch(function(err) {
-      // API unreachable — use fallback data
+      // if API unreachable
       console.warn('API unavailable:', err.message);
       document.getElementById('name').innerHTML = 'Jakob<br>Lewis';
       document.getElementById('bio').innerText =
@@ -36,14 +39,14 @@
       if (btn) btn.style.display = 'none';
     });
 }
-
+// btn
 function switchTab(tab, el) {
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   el.classList.add('active');
   document.querySelectorAll('.jl-panel').forEach(function(p) { p.classList.remove('jl-panel--active'); });
   document.getElementById('tab-' + tab).classList.add('jl-panel--active');
 }
-
+// clouds section
 window.addEventListener('load', function() {
   try {
     if (typeof VANTA !== 'undefined') {
