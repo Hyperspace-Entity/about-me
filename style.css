@@ -33,7 +33,7 @@ body {
 
 .card {
   border: none !important;
-  border: 1px solid rgba(255,255,255,0.3)
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 4px !important;
   padding: 0 !important;
   max-width: 420px;
@@ -133,7 +133,56 @@ body {
 }
 
 .contact-email:hover { background: rgba(56,189,248,0.16); border-color: #1e9fd4; color: #0369a1; }
-
 .email-icon { font-size: 1rem; flex-shrink: 0; color: #1e9fd4; }
 
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(123,143,212,0.08);
+  border: 1px solid rgba(123,143,212,0.25);
+  border-radius: 3px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  word-break: break-all;
+}
+
+.github-link:hover { background: rgba(123,143,212,0.16); border-color: #7b8fd4; color: #4a5899; }
+.github-icon { font-size: 1rem; flex-shrink: 0; color: #7b8fd4; width: 16px; height: 16px; }
+
 button, a, .interactive-elements { position: relative; z-index: 10; }
+
+.skill-group { margin-bottom: 18px; text-align: left; }
+.skill-group:last-child { margin-bottom: 0; }
+
+.group-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.chip {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.backend .group-label  { color: #5b9bd5; }
+.backend .chip         { border: 1px solid #5b9bd555; color: #444; background: #5b9bd512; }
+
+.frontend .group-label { color: #5db888; }
+.frontend .chip        { border: 1px solid #5db88855; color: #444; background: #5db88812; }
+
+.database .group-label { color: #7b8fd4; }
+.database .chip        { border: 1px solid #7b8fd455; color: #444; background: #7b8fd412; }
