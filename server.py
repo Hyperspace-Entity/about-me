@@ -3,7 +3,7 @@ import socketserver
 import json
 import os
 
-PORT = 8000
+PORT = int(os.environ.get('PORT', 8000))
 
 class AboutMeServer(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
@@ -11,6 +11,8 @@ class AboutMeServer(http.server.SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Access-Control-Allow-Methods', 'GET')
+            self.send_header('Access-Control-Allow-Headers', 'Content-Type')
             self.end_headers()
             data = {
                 "name": "Jakob Lewis",
@@ -38,8 +40,19 @@ class AboutMeServer(http.server.SimpleHTTPRequestHandler):
         else:
             super().do_GET()
 
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.end_headers()
+
+    def log_message(self, format, *args):
+        print(f"[{self.address_string()}] {format % args}")
+
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     with socketserver.TCPServer(("", PORT), AboutMeServer) as httpd:
+        httpd.allow_reuse_address = True
         print(f"Serving at http://localhost:{PORT}")
         httpd.serve_forever()
